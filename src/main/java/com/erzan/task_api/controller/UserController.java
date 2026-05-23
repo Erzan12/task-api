@@ -3,6 +3,7 @@ package com.erzan.task_api.controller;
 import com.erzan.task_api.entity.User;
 import com.erzan.task_api.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,5 +22,10 @@ public class UserController {
     @GetMapping
     public List<User> getAllUserLists() {
         return userService.getAllUserLists();
+    }
+
+    @GetMapping("/{id}")
+    public  User getUserById(@PathVariable Long id) {
+        return userService.getUserById(id);
     }
 }
