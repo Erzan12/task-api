@@ -1,11 +1,10 @@
 package com.erzan.task_api.controller;
 
+import com.erzan.task_api.dto.UserRequest;
 import com.erzan.task_api.entity.User;
 import com.erzan.task_api.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +26,10 @@ public class UserController {
     @GetMapping("/{id}")
     public  User getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
+    }
+
+    @PostMapping
+    public User createUser(@Valid @RequestBody UserRequest request) {
+        return userService.createUser(request);
     }
 }

@@ -1,8 +1,11 @@
 package com.erzan.task_api.service;
 
+import com.erzan.task_api.dto.UserRequest;
 import com.erzan.task_api.entity.User;
 import com.erzan.task_api.repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -22,5 +25,16 @@ public class UserService {
     public User getUserById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found or does not exist"));
+    }
+
+    public User createUser(UserRequest request) {
+        User user = User.builder()
+                .name(request.getName())
+                .email(request.getEmail())
+                .age(request.getAge())
+                .address(request.getAddress())
+                .build();
+
+        return userRepository.save(user);
     }
 }
