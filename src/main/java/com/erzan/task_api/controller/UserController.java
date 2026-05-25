@@ -32,4 +32,11 @@ public class UserController {
     public User createUser(@Valid @RequestBody UserRequest request) {
         return userService.createUser(request);
     }
+
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+
+        return "User has been deleted";
+    }
 }
