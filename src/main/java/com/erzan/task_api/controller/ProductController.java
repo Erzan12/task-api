@@ -1,11 +1,9 @@
 package com.erzan.task_api.controller;
 
+import com.erzan.task_api.dto.ProductRequest;
 import com.erzan.task_api.entity.Product;
 import com.erzan.task_api.service.ProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +25,10 @@ public class ProductController {
     @GetMapping("/{id}")
     public Product getSingleProduct(@PathVariable Long id) {
         return productService.getSingleProduct(id);
+    }
+
+    @PostMapping
+    public Product createProduct(@RequestBody ProductRequest request) {
+        return productService.createProduct(request);
     }
 }
