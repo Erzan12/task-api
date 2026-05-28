@@ -1,9 +1,13 @@
 package com.erzan.task_api.controller;
 
 import com.erzan.task_api.dto.UserRequest;
+import com.erzan.task_api.dto.api_response.ApiResponse;
 import com.erzan.task_api.entity.User;
 import com.erzan.task_api.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,9 +32,24 @@ public class UserController {
         return userService.getUserById(id);
     }
 
+//    @PostMapping
+//    public User createUser(@Valid @RequestBody UserRequest request) {
+//        return userService.createUser(request);
+//    }
+
     @PostMapping
-    public User createUser(@Valid @RequestBody UserRequest request) {
-        return userService.createUser(request);
+    public ResponseEntity<ApiResponse<User>> createUser(@RequestBody UserRequest request) {
+
+        User saveUser = userService.createUser(request);
+
+        ApiResponse<User> response =
+                new ApiResponse<>(
+                        true,
+                        "User created successfully",
+                        saveUser
+                );
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PatchMapping("/{id}")

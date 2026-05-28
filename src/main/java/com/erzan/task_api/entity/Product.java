@@ -20,4 +20,8 @@ public class Product {
     private String category;
     private String color;
     private String expiry;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 }
