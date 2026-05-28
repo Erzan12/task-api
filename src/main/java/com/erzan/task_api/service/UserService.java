@@ -44,4 +44,16 @@ public class UserService {
 
         userRepository.delete(user);
     }
+
+    public User updateUser(Long id, UserRequest request) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setName((request.getName()));
+        user.setAge((request.getAge()));
+        user.setEmail((request.getEmail()));
+        user.setAddress((request.getAddress()));
+
+        return userRepository.save(user);
+    }
 }
