@@ -66,7 +66,7 @@ public class UserController {
     }
 
     //user to order or buy product
-    @PostMapping("/{userId}/buy/{productId}")
+    @PostMapping("/buy")
     public ResponseEntity<ApiResponse<User>> buyProduct(@RequestBody BuyProductRequest request) {
 
         User user = userService.buyProduct(request.getUserId(), request.getProductId());
