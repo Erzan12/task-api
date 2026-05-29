@@ -1,0 +1,29 @@
+package com.erzan.task_api.entity;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@Table(name="products")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+    private String category;
+    private String color;
+    private String expiry;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    @JsonBackReference
+    private User user;
+}
