@@ -6,6 +6,8 @@ import com.erzan.task_api.entity.User;
 import com.erzan.task_api.repository.ProductRepository;
 import com.erzan.task_api.repository.UserRepository;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -26,15 +28,26 @@ public class UserService {
 //        return userRepository.findAll();
 //    }
 
-    public List<User> search(String name) {
+//    public List<User> search(String name) {
+//
+//        //if no search param, return all users
+//        if (name == null || name.isBlank()) {
+//            return userRepository.findAll();
+//        }
+//
+//        //otherwise search by name
+//        return userRepository.findByNameContainingIgnoreCase(name);
+//    }
 
-        //if no search param, return all users
+    public Page<User> search(String name, Pageable pageable) {
+
+        // no search
         if (name == null || name.isBlank()) {
-            return userRepository.findAll();
+            return userRepository.findAll(pageable);
         }
 
-        //otherwise search by name
-        return userRepository.findByNameContainingIgnoreCase(name);
+        // search with pagination
+        return userRepository.findByNameContainingIgnoreCase(name, pageable);
     }
 
     public User getUserById(Long id) {

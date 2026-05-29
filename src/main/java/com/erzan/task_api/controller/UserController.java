@@ -6,6 +6,8 @@ import com.erzan.task_api.dto.api_response.ApiResponse;
 import com.erzan.task_api.entity.User;
 import com.erzan.task_api.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -28,11 +30,19 @@ public class UserController {
 //        return userService.getAllUserLists();
 //    }
 
+//    @GetMapping
+//    public List<User> search(
+//            @RequestParam(required = false) String name
+//    ) {
+//        return userService.search(name);
+//    }
+
     @GetMapping
-    public List<User> search(
-            @RequestParam(required = false) String name
+    public Page<User> search(
+            @RequestParam(required = false) String name,
+            Pageable pageable
     ) {
-        return userService.search(name);
+        return userService.search(name, pageable);
     }
 
     @GetMapping("/{id}")
