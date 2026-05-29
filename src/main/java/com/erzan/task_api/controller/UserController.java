@@ -1,5 +1,6 @@
 package com.erzan.task_api.controller;
 
+import com.erzan.task_api.dto.BuyProductRequest;
 import com.erzan.task_api.dto.UserRequest;
 import com.erzan.task_api.dto.api_response.ApiResponse;
 import com.erzan.task_api.entity.User;
@@ -66,9 +67,9 @@ public class UserController {
 
     //user to order or buy product
     @PostMapping("/{userId}/buy/{productId}")
-    public ResponseEntity<ApiResponse<User>> buyProduct(@PathVariable Long userId, @PathVariable Long productId) {
+    public ResponseEntity<ApiResponse<User>> buyProduct(@RequestBody BuyProductRequest request) {
 
-        User user = userService.buyProduct(userId,productId);
+        User user = userService.buyProduct(request.getUserId(), request.getProductId());
 
         ApiResponse<User> response =
                 new ApiResponse<>(

@@ -1,7 +1,6 @@
 package com.erzan.task_api.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.Builder;
 import lombok.Data;
 
 @Data
