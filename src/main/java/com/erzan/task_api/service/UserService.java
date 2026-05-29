@@ -1,7 +1,9 @@
 package com.erzan.task_api.service;
 
 import com.erzan.task_api.dto.UserRequest;
+import com.erzan.task_api.entity.Product;
 import com.erzan.task_api.entity.User;
+import com.erzan.task_api.repository.ProductRepository;
 import com.erzan.task_api.repository.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
@@ -13,9 +15,11 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final ProductRepository productRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, ProductRepository productRepository) {
         this.userRepository = userRepository;
+        this.productRepository = productRepository;
     }
 
     public List<User> getAllUserLists() {
@@ -55,5 +59,21 @@ public class UserService {
         user.setAddress((request.getAddress()));
 
         return userRepository.save(user);
+    }
+
+    public User buyProduct(Long userId, Long productId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        // assign to user
+        product.setUser(user);
+
+        // save updated product
+        productRepository.save(product);
+
+        return user;
     }
 }
