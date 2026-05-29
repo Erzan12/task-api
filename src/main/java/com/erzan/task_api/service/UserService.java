@@ -22,8 +22,19 @@ public class UserService {
         this.productRepository = productRepository;
     }
 
-    public List<User> getAllUserLists() {
-        return userRepository.findAll();
+//    public List<User> getAllUserLists() {
+//        return userRepository.findAll();
+//    }
+
+    public List<User> search(String name) {
+
+        //if no search param, return all users
+        if (name == null || name.isBlank()) {
+            return userRepository.findAll();
+        }
+
+        //otherwise search by name
+        return userRepository.findByNameContainingIgnoreCase(name);
     }
 
     public User getUserById(Long id) {
@@ -76,4 +87,6 @@ public class UserService {
 
         return user;
     }
+
+
 }

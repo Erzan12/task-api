@@ -23,9 +23,16 @@ public class UserController {
         this.userService = userService;
     }
 
+//    @GetMapping
+//    public List<User> getAllUserLists() {
+//        return userService.getAllUserLists();
+//    }
+
     @GetMapping
-    public List<User> getAllUserLists() {
-        return userService.getAllUserLists();
+    public List<User> search(
+            @RequestParam(required = false) String name
+    ) {
+        return userService.search(name);
     }
 
     @GetMapping("/{id}")
