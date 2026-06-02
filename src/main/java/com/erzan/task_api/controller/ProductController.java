@@ -1,7 +1,10 @@
 package com.erzan.task_api.controller;
 
+import com.erzan.task_api.dto.BuyProductRequest;
 import com.erzan.task_api.dto.ProductRequest;
+import com.erzan.task_api.entity.Order;
 import com.erzan.task_api.entity.Product;
+import com.erzan.task_api.service.OrderService;
 import com.erzan.task_api.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +16,9 @@ public class ProductController {
 
     private final ProductService productService;
 
-    public ProductController(ProductService productService) {
+    public ProductController(
+            ProductService productService
+    ) {
         this.productService = productService;
     }
 
@@ -33,7 +38,10 @@ public class ProductController {
     }
 
     @PatchMapping("/{id}")
-    public Product updateProduct(@PathVariable Long id, @RequestBody ProductRequest request) {
+    public Product updateProduct(
+            @PathVariable Long id,
+            @RequestBody ProductRequest request
+    ) {
         return  productService.updateProduct(id, request);
     }
 

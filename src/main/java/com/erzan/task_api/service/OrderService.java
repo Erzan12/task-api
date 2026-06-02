@@ -1,9 +1,15 @@
 package com.erzan.task_api.service;
 
+import com.erzan.task_api.dto.BuyProductRequest;
+import com.erzan.task_api.entity.Order;
+import com.erzan.task_api.entity.Product;
+import com.erzan.task_api.entity.User;
 import com.erzan.task_api.repository.OrderRepository;
 import com.erzan.task_api.repository.ProductRepository;
 import com.erzan.task_api.repository.UserRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -18,5 +24,22 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    
+    public Order placeOrder(Long userId, Long productId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        Order order = Order.builder()
+                .user(user)
+                .product(product)
+                .build();
+
+        return orderRepository.save(order);
+    }
+
+    public List<Order> getOrders() {
+        return orderRepository.findAll();
+    }
 }
