@@ -24,7 +24,7 @@ public class User {
 
     private String name;
     private String email;
-    private Number age;
+    private Integer age;
     private String address;
 
     @CreationTimestamp
