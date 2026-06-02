@@ -24,15 +24,18 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public Order placeOrder(Long userId, Long productId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+    public Order placeOrder(Long buyerId, Long productId) {
+        User buyer = userRepository.findById(buyerId)
+                .orElseThrow(() -> new RuntimeException("Buyer not found"));
 
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
+        User seller = product.getSeller();
+
         Order order = Order.builder()
-                .user(user)
+                .buyer(buyer)
+                .seller(seller)
                 .product(product)
                 .build();
 
