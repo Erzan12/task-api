@@ -2,6 +2,7 @@ package com.erzan.task_api.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -18,6 +19,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
     @ManyToOne
