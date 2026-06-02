@@ -2,13 +2,9 @@ package com.erzan.task_api.controller;
 
 import com.erzan.task_api.dto.BuyProductRequest;
 import com.erzan.task_api.dto.api_response.ApiResponse;
-import com.erzan.task_api.dto.api_response.OrderResponse;
+import com.erzan.task_api.dto.api_response.list_response.OrderResponse;
 import com.erzan.task_api.entity.Order;
-import com.erzan.task_api.entity.User;
-import com.erzan.task_api.repository.OrderRepository;
 import com.erzan.task_api.service.OrderService;
-import com.erzan.task_api.service.UserService;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
