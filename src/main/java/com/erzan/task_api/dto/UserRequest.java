@@ -13,6 +13,6 @@ public class UserRequest {
     @Email
     private String email;
 
-    private Number age;
+    private Integer age;
     private String address;
 }
