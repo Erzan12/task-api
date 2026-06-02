@@ -1,7 +1,6 @@
 package com.erzan.task_api.dto.api_response;
 
 public class ApiResponse<T> {
-
     private boolean success;
     private String message;
     private T data;
@@ -16,7 +15,7 @@ public class ApiResponse<T> {
     }
 
     public String getMessage() {
-        return message;
+        return this.message;
     }
 
     public void setMessage(String message) {
@@ -24,7 +23,7 @@ public class ApiResponse<T> {
     }
 
     public boolean isSuccess() {
-        return success;
+        return this.success;
     }
 
     public void setSuccess(boolean success) {
@@ -32,7 +31,7 @@ public class ApiResponse<T> {
     }
 
     public T getData() {
-        return data;
+        return this.data;
     }
 
     public void setData(T data) {

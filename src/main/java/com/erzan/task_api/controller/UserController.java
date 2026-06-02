@@ -1,10 +1,13 @@
 package com.erzan.task_api.controller;
 
+import com.erzan.task_api.dto.BuyProductRequest;
 import com.erzan.task_api.dto.UserRequest;
 import com.erzan.task_api.dto.api_response.ApiResponse;
 import com.erzan.task_api.entity.User;
 import com.erzan.task_api.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +25,24 @@ public class UserController {
         this.userService = userService;
     }
 
+//    @GetMapping
+//    public List<User> getAllUserLists() {
+//        return userService.getAllUserLists();
+//    }
+
+//    @GetMapping
+//    public List<User> search(
+//            @RequestParam(required = false) String name
+//    ) {
+//        return userService.search(name);
+//    }
+
     @GetMapping
-    public List<User> getAllUserLists() {
-        return userService.getAllUserLists();
+    public Page<User> search(
+            @RequestParam(required = false) String name,
+            Pageable pageable
+    ) {
+        return userService.search(name, pageable);
     }
 
     @GetMapping("/{id}")
@@ -65,10 +83,10 @@ public class UserController {
     }
 
     //user to order or buy product
-    @PostMapping("/{userId}/buy/{productId}")
-    public ResponseEntity<ApiResponse<User>> buyProduct(@PathVariable Long userId, @PathVariable Long productId) {
+    @PostMapping("/buy")
+    public ResponseEntity<ApiResponse<User>> buyProduct(@RequestBody BuyProductRequest request) {
 
-        User user = userService.buyProduct(userId,productId);
+        User user = userService.buyProduct(request.getUserId(), request.getProductId());
 
         ApiResponse<User> response =
                 new ApiResponse<>(
