@@ -33,7 +33,6 @@ public class Product {
     private LocalDateTime updatedAt;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
-    @JsonBackReference
-    private User user;
+    @JoinColumn(name = "seller_id")
+    private User seller;
 }

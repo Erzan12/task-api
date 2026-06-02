@@ -1,5 +1,6 @@
 package com.erzan.task_api.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -23,8 +24,14 @@ public class Order {
     private LocalDateTime createdAt;
 
     @ManyToOne
-    private User user;
+    @JoinColumn(name = "buyer_id")
+    private User buyer;
 
     @ManyToOne
+    @JoinColumn(name = "seller_id")
+    private User seller;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
 }
