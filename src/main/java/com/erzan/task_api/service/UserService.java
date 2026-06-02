@@ -82,22 +82,4 @@ public class UserService {
 
         return userRepository.save(user);
     }
-
-    public User buyProduct(Long userId, Long productId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
-
-        // assign to user
-        product.setUser(user);
-
-        // save updated product
-        productRepository.save(product);
-
-        return user;
-    }
-
-
 }
