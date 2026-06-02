@@ -1,4 +1,4 @@
-package com.erzan.task_api.dto.api_response;
+package com.erzan.task_api.dto.api_response.list_response;
 
 import java.time.LocalDateTime;
 
