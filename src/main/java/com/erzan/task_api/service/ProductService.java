@@ -4,7 +4,6 @@ import com.erzan.task_api.dto.ProductRequest;
 import com.erzan.task_api.entity.Product;
 import com.erzan.task_api.repository.ProductRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 

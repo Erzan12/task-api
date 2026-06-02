@@ -5,11 +5,9 @@ import com.erzan.task_api.entity.Product;
 import com.erzan.task_api.entity.User;
 import com.erzan.task_api.repository.ProductRepository;
 import com.erzan.task_api.repository.UserRepository;
-import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
