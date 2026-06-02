@@ -81,20 +81,4 @@ public class UserController {
 
         return "User has been deleted";
     }
-
-    //user to order or buy product
-    @PostMapping("/buy")
-    public ResponseEntity<ApiResponse<User>> buyProduct(@RequestBody BuyProductRequest request) {
-
-        User user = userService.buyProduct(request.getUserId(), request.getProductId());
-
-        ApiResponse<User> response =
-                new ApiResponse<>(
-                        true,
-                        "User buy product successfully",
-                        user
-                );
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
 }
