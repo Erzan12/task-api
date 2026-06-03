@@ -33,6 +33,7 @@ public class ProductController {
                 .map(product -> new ProductResponse(
                         product.getId(),
                         product.getName(),
+                        product.getColor(),
                         product.getExpiry(),
                         product.getSeller().getName(),
                         product.getCreatedAt()
