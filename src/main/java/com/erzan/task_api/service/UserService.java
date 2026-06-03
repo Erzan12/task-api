@@ -22,9 +22,9 @@ public class UserService {
         this.productRepository = productRepository;
     }
 
-//    public List<User> getAllUserLists() {
-//        return userRepository.findAll();
-//    }
+    public List<User> getUsers() {
+        return userRepository.findAll();
+    }
 
 //    public List<User> search(String name) {
 //
@@ -37,16 +37,16 @@ public class UserService {
 //        return userRepository.findByNameContainingIgnoreCase(name);
 //    }
 
-    public Page<User> search(String name, Pageable pageable) {
-
-        // no search
-        if (name == null || name.isBlank()) {
-            return userRepository.findAll(pageable);
-        }
-
-        // search with pagination
-        return userRepository.findByNameContainingIgnoreCase(name, pageable);
-    }
+//    public Page<User> search(String name, Pageable pageable) {
+//
+//        // no search
+//        if (name == null || name.isBlank()) {
+//            return userRepository.findAll(pageable);
+//        }
+//
+//        // search with pagination
+//        return userRepository.findByNameContainingIgnoreCase(name, pageable);
+//    }
 
     public User getUserById(Long id) {
         return userRepository.findById(id)
