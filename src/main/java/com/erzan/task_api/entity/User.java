@@ -34,14 +34,11 @@ public class User {
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "seller")
-    @JsonManagedReference("seller-products")
     private List<Product> productsForSale;
 
     @OneToMany(mappedBy = "buyer")
-    @JsonManagedReference("buyer-products")
     private List<Order> purchases;
 
     @OneToMany(mappedBy = "seller")
-    @JsonManagedReference("seller-orders")
     private List<Order> orders;
 }
