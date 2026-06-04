@@ -1,6 +1,5 @@
 package com.erzan.task_api.service;
 
-import com.erzan.task_api.dto.BuyProductRequest;
 import com.erzan.task_api.entity.Order;
 import com.erzan.task_api.entity.Product;
 import com.erzan.task_api.entity.User;
@@ -8,6 +7,7 @@ import com.erzan.task_api.repository.OrderRepository;
 import com.erzan.task_api.repository.ProductRepository;
 import com.erzan.task_api.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,6 +24,7 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
+    @Transactional
     public Order placeOrder(Long buyerId, Long productId) {
         User buyer = userRepository.findById(buyerId)
                 .orElseThrow(() -> new RuntimeException("Buyer not found"));
