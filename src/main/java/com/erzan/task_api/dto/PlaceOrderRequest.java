@@ -3,7 +3,7 @@ package com.erzan.task_api.dto;
 import lombok.Data;
 
 @Data
-public class BuyProductRequest {
+public class PlaceOrderRequest {
 
     private Long buyerId;
     private Long productId;
