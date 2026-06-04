@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public record UserOrderResponse(
         Long id,
-        String sellerName,
+        String buyerName,
         String productName,
         LocalDateTime createdAt
 ) {}

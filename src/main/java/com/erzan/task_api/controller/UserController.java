@@ -67,7 +67,7 @@ public class UserController {
                             .stream()
                             .map(order -> new UserOrderResponse(
                                     order.getId(),
-                                    order.getSeller().getName(),
+                                    order.getBuyer().getName(),
                                     order.getProduct().getName(),
                                     order.getCreatedAt()
                             ))

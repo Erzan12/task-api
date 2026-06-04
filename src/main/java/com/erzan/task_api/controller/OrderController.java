@@ -1,6 +1,6 @@
 package com.erzan.task_api.controller;
 
-import com.erzan.task_api.dto.BuyProductRequest;
+import com.erzan.task_api.dto.PlaceOrderRequest;
 import com.erzan.task_api.dto.api_response.ApiResponse;
 import com.erzan.task_api.dto.api_response.list_response.OrderResponse;
 import com.erzan.task_api.entity.Order;
@@ -23,16 +23,27 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @PostMapping("/place-order")
-    public ResponseEntity<ApiResponse<Order>> placeOrder(@RequestBody BuyProductRequest request) {
+    @PostMapping
+    public ResponseEntity<ApiResponse<OrderResponse>> placeOrder(@RequestBody PlaceOrderRequest request) {
 
-        Order order = orderService.placeOrder(request.getBuyerId(), request.getProductId());
+        Order order = orderService.placeOrder(
+                request.getBuyerId(),
+                request.getProductId()
+        );
 
-        ApiResponse<Order> response =
+        OrderResponse orderResponse = new OrderResponse(
+                order.getId(),
+                order.getBuyer().getName(),
+                order.getSeller().getName(),
+                order.getProduct().getName(),
+                order.getCreatedAt()
+        );
+
+        ApiResponse<OrderResponse> response =
                 new ApiResponse<>(
                         true,
                         "Order has been placed",
-                        order
+                        orderResponse
                 );
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
